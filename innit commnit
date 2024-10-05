@@ -1,0 +1,5 @@
+git init
+git add .
+git commit -m "Initial OTP verification app"
+git remote add origin https://github.com/Hacker-tech-lang/otp-app.git
+git push -u origin main
