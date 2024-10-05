@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .otp-container {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    input {
+      width: 40px;
+      font-size: 24px;
+      text-align: center;
+      margin: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="otp-container">
+    <h1>Enter OTP</h1>
+    <form id="otpForm">
+      <input type="text" maxlength="1" class="otp-input" required>
+      <input type="text" maxlength="1" class="otp-input" required>
+      <input type="text" maxlength="1" class="otp-input" required>
+      <input type="text" maxlength="1" class="otp-input" required>
+      <input type="text" maxlength="1" class="otp-input" required>
+      <input type="text" maxlength="1" class="otp-input" required>
+      <br>
+      <button type="submit">Submit OTP</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('otpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let otp = '';
+      document.querySelectorAll('.otp-input').forEach(input => {
+        otp += input.value;
+      });
+      console.log('Entered OTP:', otp);
+
+      // Here, you would send this OTP to the server for validation
+      fetch('/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ otp })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.valid) {
+          alert('OTP Verified Successfully!');
+        } else {
+          alert('Invalid OTP!');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
