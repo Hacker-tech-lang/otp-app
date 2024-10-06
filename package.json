@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js"
   },
-  "author": "Your Name",
+  "author": "cdc,
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
